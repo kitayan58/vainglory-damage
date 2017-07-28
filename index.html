@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <link rel="stylesheet" type="text/css" href="background.css">
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="initindex.js"></script>
+    <script type="text/javascript" src="changeCalculation.js"></script>
+    <script type="text/javascript" src="skillClass.js"></script>
+    <script type="text/javascript" src="HeroSelect.js"></script>
+    <script type="text/javascript" src="calcStatus.js"></script>
+    <script type="text/javascript" src="skillDamage.js"></script>
+    <script type="text/javascript" src="CalcFisticuffs.js"></script>
+    <script type="text/javascript" src="calcDamage.js"></script>
+  </head>
+  <body>
+    <!---------　背景画像透過処理　-------------->
+    <div class="layerImage">
+      <div class="layerTransparent">
+	<div class="frontContents">
+	  <!------------------------------------------->
+	  <font size="5">vainglory ダメージ計算ツール (ver.2.6対応)</font>
+	  <meta charset="UTF-8" />
+	  <title>vainglory ダメージ計算ツール</title>
+	  <br><br><A Href="note.html">使い方・注意書き</A><br>
+	  <A Href="updated.html">更新履歴</A><br><br>
+
+	  <form action="calcDamage.js" name="selEQ" method="POST">
+	    <table border="1" style="border:2px ridge #ffeedd; background:#ffeeee">
+	      <tr>
+		<td><center>ヒーロー</center></td>
+		<td><center>
+		  <!----------- ヒーロー選択 ------------>
+		  <select id="hero_select1" name="hero1" style="background:#ffeebb">
+		    <!--
+		    initindexにより初期化され選択肢が増える
+		       -->
+		  </select>
+		</center></td>
+		<td><center>
+		  <select id="hero_select2" name="hero" style="background:#ffeebb"></select>
+		</center></td>
+	      </tr>
+	      <!----------- アイテム選択 ----------------->
+	      <tr>
+		<td>装備1</td>
+		<td>
+		  <select id="PE1" style="background:#ffeebb"></select>
+		</td>
+		<td>
+		  <select id="EE1" style="background:#ffeebb"></select>
+		</td>
+
+	      </tr>
+	      <tr>
+		<td>装備2</td>
+		<td>
+		  <select id="PE2" style="background:#ffeebb"></select>
+		</td>
+		<td>
+		  <select id="EE2" style="background:#ffeebb"></select>
+		</td>
+	      </tr>
+	      <tr>
+		<td>装備3</td>
+		<td>
+		  <select id="PE3" style="background:#ffeeaa"></select>
+		</td>
+		<td>
+		  <select id="EE3" style="background:#ffeeaa"></select>
+		</td>
+	      </tr>
+	      <tr>
+		<td>装備4</td>
+		<td>
+		  <select id="PE4" style="background:#ffeeaa"></select>
+		</td>
+		<td>
+		  <select id="EE4" style="background:#ffeeaa"></select>
+		</td>
+	      </tr>
+	      <tr>
+		<td>装備5</td>
+		<td>
+		  <select id="PE5" style="background:#ffeeaa"></select>
+		</td>
+		<td>
+		  <select id="EE5" style="background:#ffeeaa"></select>
+		</td>
+	      </tr>
+	      <tr>
+		<td>装備6</td>
+		<td>
+		  <select id="PE6" style="background:#ffeeaa"></select>
+		</td>
+		<td>
+		  <select id="EE6" style="background:#ffeeaa"></select>
+		</td>
+	      </tr>
+	      <tr>
+		<td>インフュージョン</td>
+		<td>
+		  <select id="Pinf" style="background:#ffeeaa">
+		    <option>なし</option>
+		    <option value="wpinf">ウェポンインフュージョン</option>
+		    <option value="cpinf">クリスタルインフュージョン</option>
+		  </select>
+		</td>
+		<td>
+		  <select id="Einf" style="background:#ffeeaa">
+		    <option>なし</option>
+		    <option value="wpinf">ウェポンインフュージョン</option>
+		    <option value="cpinf">クリスタルインフュージョン</option>
+		  </select>
+		</td>
+	      </tr>
+	    </table><br>
+	    <!-- 計算の種類を選択 -->
+	    計算の種類を選択
+	    <select id="calculation" name="calclation" onchange="changeCalculation()"></select>
+	    <span class="br"></span>
+	    <input type="button" value="決定" onclick="calcDamage2()">
+	    <input type="reset" value="リセット">
+	    <!-------------- n秒間合計ダメージ表示箇所 ----------------------->
+	    <span class="br"></span>
+	    <div id="nsecDamage" style="display:none">
+	      <div id="ndam" style="display:">
+		n秒間合計ダメージ
+		<input name="_text" type="text">(秒数を入力してください)<br>
+	      </div><br>
+
+	      <!-- ダメージ計算の結果を表示する　-->
+	      <!-- <font size="4"> -->
+	      <div class="nstatus" id="nstatus" style="display:">
+		攻撃側:<br>
+		防御側:<br>
+	      </div>
+	      <span class="br"></span>
+	      <div class="nstatus" id="result" style="display:">
+		ダメージ:<br>
+		DPS:<br>
+		累計ダメージ:
+	      </div>
+	    </div>
+	    <br>
+	    <!-- <font> -->
+	    <!------------------------------------------------------->
+
+	    <!---------------------- スキルダメージ計算結果表示箇所 --------------------->
+	    <span class="br"></span>
+	    <div class="nstatus" id="skill1" style="display:none">
+	      攻撃側：<br>
+	      防御側:<br>
+	    </div>
+	  </form>
+
+	  <!-- ブロークンミスのスタックを選ぶ箇所 -->
+	  <div class="brokenmyth" style="display:none" id="BM">
+	    <div id="BMmessage"></div>
+	    <div id="BrokenMyth"></div>
+	  </div>
+	  <!-- アフターショックのダメージ・回復表示 -->
+	  <div class="brokenmyth" style="display:none" id="AS"></div>
+
+	  <table id="skill" border="2" style="background:#eeffff; display:none">
+	    <caption><font size="4">スキルダメージ</font></caption>
+	    <tr>
+	      <td><center>スキル名</center></td>
+	      <td><center>クールダウン</center></td>
+	      <td><center>効果</center></td>
+	      <td><center>ダメージ（回復)</center></td>
+	      <tr>
+		<td id="Aname"><center>Aスキル</center></td>
+		<td id="Acooldown"><div align="right">秒</div></td>
+		<td id="Aeffect"><center>効果</center></td>
+		<td id="Adamage"><div align="right">ダメージ</div></td>
+	      </tr>
+	      <tr>
+		<td id="Bname"><center>Bスキル</center></td>
+		<td id="Bcooldown"><div align="right">秒</div></td>
+		<td id="Beffect"><center>効果</center></td>
+		<td id="Bdamage"><div align="right">ダメージ</div></td>
+	      </tr>
+	      <tr>
+		<td id="ULTname"><center>ULT</center></td>
+		<td id="ULTcooldown"><div align="right">秒</div></td>
+		<td id="ULTeffect"><center>効果</center></td>
+		<td id="ULTdamage"><div align="right">ダメージ</div></td>
+	      </tr>
+	  </table>
+
+	  <!--------------------------------------------------------------->
+
+	  <!------------------- キャリー殴り合いダメージ計算 ------------------------->
+	  <div class="nstatus" id="fiststatus" style="display:none">
+	    攻撃側：<br>
+	    防御側:<br>
+	  </div>
+	  <div id="Fisticuffs" style="display:none">
+	    <span class="br"></span>
+
+	    <table id="FistTable" border="2" style="background:#eeffff;">
+	      <caption>キャリー殴り合い</caption>
+	    </table>
+	  </div>
+	  <!--------------------------------------------------------------->
+	</div>
+      </div>
+    </div>
+  </body>
+</html>
