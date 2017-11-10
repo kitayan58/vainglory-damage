@@ -1,0 +1,188 @@
+var eqBox = {
+    'weapon' : '武器',
+    'crystal' : 'クリスタル',
+    'protect' : '防具',
+    'practical' : '実用',
+};
+
+var weapon = {
+    'salow' : 'サロウブレード',
+    'snake' : '蛇仮面',
+    'poison' : 'ポイズンダガー',
+    'breaking' : 'ブレーキングポイント',
+    'tension' : 'テンションボウ',
+    'bonesaw' : 'ボーンソー',
+    'tornado' : 'トルネードトリガー',
+    'monocle' : 'タイランツモノクル',
+}
+
+var crystal = {
+    'shutter' : 'シャターグラス',
+    'broken' : 'ブロークンミス',
+    'frost' : 'フロストバーン',
+    'eve' : 'イーブオブハーベスト',
+    'echo' : 'エコー',
+    'clock' : 'クロックワーク',
+    'shock' : 'アフターショック',
+    'current' : 'オルターカレント',
+}
+
+var protect = {
+    'clusible' : 'クルーシブル',
+    'fountain' : '再生の泉',
+    'aegis' : 'イージス',
+    'jacket' : 'メタルジャケット',
+    'atlas' : 'アトラスの肩甲',
+}
+
+var practical = {
+    'journey' : 'ジャーニーブーツ',
+    'tread' : 'ウォートレッド',
+    'halcyon' : 'ハルシオンチャージ',
+    'karakuri' : 'カラクリ',
+    'crown' : 'ストームクラウン',
+    'steal' : 'シバースチール',
+}
+
+function changeKind(Node){
+    var index = Node.selectedIndex;
+    var value = Node.options[Node.selectedIndex].value;
+    var targetNode = Node.parentNode.childNodes[3];
+    var eqKind;
+    
+    switch(index){
+    case 1:
+	eqKind = weapon;
+	break;
+    case 2:
+	eqKind = crystal;
+	break;
+    case 3:
+	eqKind = protect;
+	break;
+    case 4:
+	eqKind = practical;
+	break;
+    }
+    var child;
+    while(child = targetNode.lastChild){
+	targetNode.removeChild(child);
+    }
+    var option = document.createElement('option');
+    option.innerHTML = 'アイテムを選択';
+    targetNode.appendChild(option);
+    for(var j in eqKind){
+	option = document.createElement('option');
+	option.setAttribute('value', j);
+	option.innerHTML = eqKind[j];
+	targetNode.appendChild(option);
+    }
+}
+
+function changeItem(Node, Hero, Pre){
+    var value = Node.options[Node.selectedIndex].value;
+    
+    switch(value){
+    case 'salow':
+	Hero.wp += 150;
+	break;
+    case 'snake':
+	Hero.wp += 85;
+	break;
+    case 'breaking':
+	Hero.wp += 55;
+	Hero.speed += 35;
+	break;
+    case 'tension':
+	Hero.wp += 45;
+	Hero.wpPene += 10;
+	break;
+    case 'bonesaw':
+	Hero.wp += 15;
+	Hero.speed += 50;
+	break;
+    case 'tornado':
+	Hero.speed += 75;
+	Hero.critDam += 20;
+	Hero.critRate += 20;
+	break;
+    case 'monocle':
+	Hero.wp += 50;
+	Hero.critDam += 20;
+	Hero.critRate += 40;
+	break;
+    case 'shutter':
+	Hero.cp += 150;
+	break;
+    case 'broken':
+	Hero.cp += 70;
+	Hero.cpPene += 10;
+	break;
+    case 'frost':
+	Hero.cp += 100;
+	break;
+    case 'eve':
+	Hero.cp += 55;
+	break;
+    case 'clock':
+	Hero.cpAmp += 30;
+	break;
+    case 'shock':
+	Hero.cp += 35;
+	break;
+    case 'current':
+	Hero.cp += 60;
+	Hero.speed += 65;
+	break;
+    case 'clusible':
+	Hero.hp += 600;
+	break;
+    case 'fountain':
+	Hero.hp += 200;
+	Hero.armor += 30;
+	Hero.shield += 75;
+	break;
+    case 'aegis':
+	Hero.hp += 200;
+	Hero.armor += 30;
+	Hero.shield += 125;
+	break;
+    case 'jacket':
+	Hero.armor += 170;
+	Hero.shield += 35;
+	break;
+    case 'atlas':
+	Hero.armor += 85;
+	Hero.shield += 35;
+	break;
+    case 'journey':
+	Hero.hp += 250;
+	break;
+    case 'tread':
+	Hero.hp += 500;
+	break;
+    case 'halcyon':
+	Hero.hp += 200;
+	break;
+    case 'karakuri':
+	Hero.hp += 350;
+	break;
+    case 'crown':
+	Hero.hp += 200;
+	break;
+    case 'steal':
+	Hero.hp += 500;
+	break;
+    case 'wpinf':
+	Hero.wp += 60;
+	Hero.speed += 24;
+	Hero.armor += 30;
+	Hero.shield += 30;
+	break;
+    case 'cpinf':
+	Hero.cp += 60;
+	Hero.armor += 30;
+	Hero.shield += 30;
+	break;
+    }
+}

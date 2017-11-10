@@ -1,0 +1,23 @@
+var eq = getElementsByName('EQkind');
+
+var eqBox = {
+    'weapon': '武器',
+    'crystal': 'クリスタル',
+    'protect': '防具',
+    'practical': '実用',
+    'ex': 'その他',
+};
+
+//select要素を追加
+var select = document.createElement('select');
+select.setAttribute('id', 'kind');
+eq.appendChild(select);
+
+for(var i in eqBox){
+    var option = document.createElement('option');
+
+    option.setAttribute('value', i);
+    option.innerHTML = eqBox[i];
+
+    select.appendChild(option);
+}
