@@ -36,3 +36,4 @@ var skillEffect = function(){
     this.addDamage = (new Array(arguments[1])).fill(0); // 追加ダメージ(%)
     this.maxhpdamage = (new Array(arguments[1])).fill(0); // 最大体力に応じたダメージ
 };
+

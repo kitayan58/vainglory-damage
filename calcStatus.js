@@ -367,3 +367,4 @@ function calcStatus(Hero, initial){
 
     return Hero;
 }
+

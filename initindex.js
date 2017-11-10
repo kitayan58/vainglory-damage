@@ -114,3 +114,4 @@ onload = function(){
     addOption(node, "skill", "スキルダメージ");
     addOption(node, "fisticuffs", "キャリー殴り合い");
 }	
+

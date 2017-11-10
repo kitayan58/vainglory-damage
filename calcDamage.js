@@ -120,6 +120,7 @@ function calcDamage2(){
 	    if (Player.BPflg){
 		var BPstack = calcBPstack(Player, sumDamage);
 		Player.wp += BPstack * 10;
+
 		message += "ブレポ" + BPstack.toString(10) + "	  ";
 	    }
 	    // ボーンソー処理
@@ -197,7 +198,6 @@ function calcDamage2(){
     case "fisticuffs":
 	CalcFisticuffs(Player, Enemy);
 	break;
-	
     default:
 	break;
     }
