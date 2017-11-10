@@ -136,7 +136,7 @@ function calcStatus(Hero, initial){
 	case 'tornado':
 	    Hero.cost += 2600;
 	    Hero.speed += 40;
-	    Hero.critDam += 15;
+	    Hero.critDam += 20;
 	    Hero.critRate += 35;
 	    break;
 	case 'monocle':
@@ -171,7 +171,7 @@ function calcStatus(Hero, initial){
 	case 'shard':
 	    Hero.cost += 900;
 	    Hero.cp += 20;
-	    shieldBreakerz(Hero, 18);
+	    shieldBreakerz(Hero, 12);
 	    break;
 	case 'void':
 	    Hero.cost += 700;
@@ -196,7 +196,7 @@ function calcStatus(Hero, initial){
 	    shieldBreakerz(Hero, 30);
 	    break;
 	case 'frost':
-	    Hero.cost += 2600;
+	    Hero.cost += 2800;
 	    Hero.cp += 85;
 	    break;
 	case 'dragoneye':
@@ -244,7 +244,7 @@ function calcStatus(Hero, initial){
 	    // tier2
 	case 'dragonheart':
 	    Hero.cost += 650;
-	    Hero.hp += 450;
+	    Hero.hp += 500;
 	    break;
 	case 'lifefountain':
 	    Hero.cost += 800;
@@ -271,7 +271,7 @@ function calcStatus(Hero, initial){
 	    break;
 	case 'clusible':
 	    Hero.cost += 1850;
-	    Hero.hp += 700;
+	    Hero.hp += 650;
 	    break;
 	case 'fountain':
 	    Hero.cost += 2300;
@@ -292,7 +292,7 @@ function calcStatus(Hero, initial){
 	    break;
 	case 'atlas':
 	    Hero.cost += 1900;
-	    Hero.armor += 80;
+	    Hero.armor += 70;
 	    Hero.shield += 25;
 	    break;
 

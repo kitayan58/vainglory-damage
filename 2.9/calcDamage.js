@@ -12,14 +12,14 @@ function calcDamage(Player, Enemy){
 }
 
 // stack数貯めるのに必要なダメージの計算
-// メレー: (160+((stack-1)*5+160)) * stack / 2
+// メレー: (140+((stack-1)*5+140)) * stack / 2
 function BPDamage(stack, melee){
     var damage;
     var alpha;
     if(melee == 0) alpha = 10;
     else if(melee = 1) alpha = 5;
 
-    damage = (160 + ( (stack-1)*alpha + 160)) * stack / 2;
+    damage = (140 + ( (stack-1)*alpha + 140)) * stack / 2;
     return damage;
 }
 
@@ -170,7 +170,7 @@ function calcDamage2(){
 	    var node = document.getElementById("AS");
 	    displayInline("AS");
 	    var hp = Enemy.hp;
-	    var ASdamage = ApplyDamageEquation(hp*0.14, Player.cpPene, Enemy.shield);
+	    var ASdamage = ApplyDamageEquation(hp*0.15, Player.cpPene, Enemy.shield);
 	    var ASheal = ASdamage/2;
 	    node.innerHTML = "アフターショックダメージ:&emsp;" + ASdamage.toFixed(1).toString(10) + "ダメージ";
 	    node.innerHTML += "<span class=\"br\"></span>";

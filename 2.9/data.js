@@ -23,7 +23,6 @@ var captain = {
     'Fortress': 'フォートレス',
     'Grace': 'グレース',
     'Lance': 'ランス',
-    'Lorelai': 'ローレライ',
     'Lyra': 'ライラ',
     'Phinn': 'フィン'
 };
@@ -97,7 +96,7 @@ var defence = {
     'dragonheart': 'ドラゴンハート',
     'lifefountain': '生命の泉',
     'reflect': '反射ブロック',
-    'kinetic': 'キネティックシールド',
+    'kinetic': 'キネティック',
     'plate': 'コートオブプレート',
     'clusible': 'クルーシブル',
     'slumber': 'スランバーハスク',
@@ -119,7 +118,7 @@ var practice = {
     'karakuri': 'カラクリ',
     'crown': 'ストームクラウン',
     'nullwave': 'ヌルウェーブガントレット',
-    'steal': 'シバースチール'
+    'steal': 'ㇱバースチール'
 };
 
 BSsharp = 0.05;

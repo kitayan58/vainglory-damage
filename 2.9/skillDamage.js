@@ -36,8 +36,7 @@ function calcSkillDamage(Player, Enemy, skill, skillLevel){
     if(Player.SFflg){
 	var node = document.getElementById("SF");
 	displayInline("SF");
-	var SFconst = Math.floor( 50*((Player.level-1)/11) + 15*((12-Player.level)/11) * 10 ) / 10;
-	var SFdamage = ApplyDamageEquation(clystalPower+SFconst, Player.cpPene, Enemy.shield);
+	var SFdamage = ApplyDamageEquation(clystalPower, Player.cpPene, Enemy.shield);
 	node.innerHTML = "スペルファイア<br>ダメージ:&emsp;" + SFdamage.toFixed(1).toString(10) + "ダメージ";
     }
     else{
@@ -114,7 +113,8 @@ function calcSkillDamage(Player, Enemy, skill, skillLevel){
 	    effectDamage[i] = effectDamage[0] * 0.33;
 	    break;
 	case "グリマー初撃":  // ケストレルのグリマーショット
-	    effectDamage[i] = ApplyDamageEquation(Player.wp,Plyaer.wpPene+effect.wpPene[skilllevel-1],Enemy.armor);
+	    var ratio = [100,105,110,115,130];
+	    effectDamage[i] = calcDamage(Player,Enemy) * ratio[skillLevel-1]/100;
 	    break;
 	case "基本攻撃ダメージ": // クラルの死者の追求
 	    effectDamage[i] = calcDamage(Player,Enemy);
