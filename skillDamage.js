@@ -114,7 +114,7 @@ function calcSkillDamage(Player, Enemy, skill, skillLevel){
 	    effectDamage[i] = effectDamage[0] * 0.33;
 	    break;
 	case "グリマー初撃":  // ケストレルのグリマーショット
-	    effectDamage[i] = ApplyDamageEquation(Player.wp,Plyaer.wpPene+effect.wpPene[skilllevel-1],Enemy.armor);
+	    effectDamage[i] = ApplyDamageEquation(Player.wp,Player.wpPene+effect.wpPene[skillLevel-1],Enemy.armor);
 	    break;
 	case "基本攻撃ダメージ": // クラルの死者の追求
 	    effectDamage[i] = calcDamage(Player,Enemy);

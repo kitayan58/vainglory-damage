@@ -51,14 +51,14 @@ onload = function(){
     }
     
     // レベル選択の入力を追加
-    var node = document.getElementById("level1");
-    addInput(node, "range", "HeroLevel", 1, 12, 12);
+    //var node = document.getElementById("level1");
+    //addInput(node, "range", "HeroLevel", 1, 12, 12);
     var object = document.getElementById("HeroLevel");
     object.onchange = function(){
 	showLevel("HeroLevel", "messe1");
     };
-    node = document.getElementById("level2");
-    addInput(node, "range", "EnemyLevel", 1, 12, 12);
+    //node = document.getElementById("level2");
+    //addInput(node, "range", "EnemyLevel", 1, 12, 12);
     object = document.getElementById("EnemyLevel");
     object.onchange = function(){
 	showLevel("EnemyLevel", "messe2");
